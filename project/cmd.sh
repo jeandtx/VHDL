@@ -1,7 +1,7 @@
-ghdl -a --ieee=synopsys -fexplicit designual.vhd  
-ghdl -e --ieee=synopsys -fexplicit ual
+ghdl -a --ieee=synopsys -fexplicit ./design/buffer.vhd  
+ghdl -e --ieee=synopsys -fexplicit bufferNbits
 
-ghdl -a --ieee=synopsys -fexplicit testbenchual.vhd
-ghdl -e --ieee=synopsys -fexplicit ualtestbench
+ghdl -a --ieee=synopsys -fexplicit ./test/buffer.vhd
+ghdl -e --ieee=synopsys -fexplicit mybufferNbitstestbench
 
-ghdl -r --ieee=synopsys -fexplicit ualtestbench --vcd=testbench.vcd --stop-time=1us
+ghdl -r --ieee=synopsys -fexplicit mybufferNbitstestbench --vcd=testbench.vcd --stop-time=1ms
