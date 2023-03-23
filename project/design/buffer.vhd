@@ -17,8 +17,7 @@ end bufferNbits;
 architecture bufferNbits_Arch of bufferNbits is
 
 begin
-
-	MyBufferNbitsProc : process (reset, clock)
+	process (reset, clock)
 	begin
 		if (reset = '1') then
 			s1 <= (others => '0');
@@ -30,5 +29,4 @@ begin
 			end if;
 		end if;
 	end process;
-
 end bufferNbits_Arch;
