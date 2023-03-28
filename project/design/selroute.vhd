@@ -9,6 +9,8 @@ port(
     B: in std_logic_vector(3 downto 0);
     SEL_ROUTE: in std_logic_vector(3 downto 0);
     RES_IN: in std_logic_vector(7 downto 0);
+    MEM_CACHE1_IN: in std_logic_vector(7 downto 0);
+    MEM_CACHE2_IN: in std_logic_vector(7 downto 0);
 
     MEM_CACHE1_OUT: out std_logic_vector(7 downto 0);
     MEM_CACHE2_OUT: out std_logic_vector(7 downto 0);
@@ -31,23 +33,23 @@ begin
             when "0001" =>
                 Buffer_B_IN <= B;
             when "0010" =>
-                MEM_CACHE1_OUT(3 downto 0) <= A;
+                Buffer_A_IN <= MEM_CACHE1_IN(3 downto 0);
             when "0011" =>
-                MEM_CACHE1_OUT(7 downto 4) <= A;
+                Buffer_A_IN <= MEM_CACHE1_IN(7 downto 4);
             when "0100" =>
-                MEM_CACHE1_OUT(3 downto 0) <= B;
+                Buffer_B_IN <= MEM_CACHE1_IN(3 downto 0);
             when "0101" =>
-                MEM_CACHE1_OUT(7 downto 4) <= B;
+                Buffer_B_IN <= MEM_CACHE1_IN(7 downto 4);
             when "0110" =>
                 MEM_CACHE1_OUT <= RES_IN;
             when "0111" =>
-                MEM_CACHE2_OUT(3 downto 0) <= A;
+                Buffer_A_IN <= MEM_CACHE2_IN(3 downto 0);
             when "1000" =>
-                MEM_CACHE2_OUT(7 downto 4) <= A;
+                Buffer_A_IN <= MEM_CACHE2_IN(7 downto 4);
             when "1001" =>
-                MEM_CACHE2_OUT(3 downto 0) <= B;
+                Buffer_B_IN <= MEM_CACHE2_IN(3 downto 0);
             when "1010" =>
-                MEM_CACHE2_OUT(7 downto 4) <= A;
+                Buffer_B_IN <= MEM_CACHE2_IN(7 downto 4);
             when "1011" =>
                 MEM_CACHE2_OUT <= RES_IN;
             when "1100" =>
