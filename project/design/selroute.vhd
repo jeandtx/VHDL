@@ -23,10 +23,10 @@ architecture selroute_dataflow of selroute is
 begin
     process(A, B, SEL_ROUTE, RES_IN)
     begin
-        Buffer_A_IN <= (others => '0');
-        Buffer_B_IN <= (others => '0');
-        MEM_CACHE1_OUT <= (others => '0');
-        MEM_CACHE2_OUT <= (others => '0');
+        -- Buffer_A_IN <= (others => '0');
+        -- Buffer_B_IN <= (others => '0');
+        -- MEM_CACHE1_OUT <= (others => '0');
+        -- MEM_CACHE2_OUT <= (others => '0');
         case SEL_ROUTE is 
             when "0000" =>
                 Buffer_A_IN <= A;
