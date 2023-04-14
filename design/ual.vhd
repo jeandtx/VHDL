@@ -12,7 +12,6 @@ ENTITY ual IS
         SR_out_L : OUT STD_ULOGIC;
         SR_out_R : OUT STD_ULOGIC;
         S_out : OUT STD_ULOGIC_VECTOR(7 DOWNTO 0)
-
     );
 END ual;
 
