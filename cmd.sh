@@ -34,6 +34,14 @@ ghdl -e --ieee=synopsys -fexplicit mybufferNbitstestbench
 
 ghdl -r --ieee=synopsys -fexplicit mybufferNbitstestbench --vcd=testbench.vcd --stop-time=1ms
 
+MEMORY_CACHE 
+ghdl -a --ieee=synopsys -fexplicit ./design/memoryCache.vhd  
+ghdl -e --ieee=synopsys -fexplicit memory
+
+ghdl -a --ieee=synopsys -fexplicit ./test/memoryCache.vhd
+ghdl -e --ieee=synopsys -fexplicit test_memory
+
+ghdl -r --ieee=synopsys -fexplicit test_memory --vcd=testbench.vcd --stop-time=1ms
 
 TOP
 ghdl -a --ieee=synopsys -fexplicit ./design/buffer.vhd  
@@ -44,6 +52,8 @@ ghdl -a --ieee=synopsys -fexplicit ./design/selout.vhd
 ghdl -e --ieee=synopsys -fexplicit selout
 ghdl -a --ieee=synopsys -fexplicit ./design/ual.vhd  
 ghdl -e --ieee=synopsys -fexplicit ual
+ghdl -a --ieee=synopsys -fexplicit ./design/memoryCache.vhd  
+ghdl -e --ieee=synopsys -fexplicit memory
 ghdl -a --ieee=synopsys -fexplicit ./design/top.vhd  
 ghdl -e --ieee=synopsys -fexplicit top
 

@@ -37,8 +37,6 @@ ARCHITECTURE top_arch OF top IS
         );
     END COMPONENT;
 
-    SIGNAL MEM_CACHE1 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL MEM_CACHE2 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL Buffer_A : STD_ULOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL Buffer_B : STD_ULOGIC_VECTOR(3 DOWNTO 0);
 
@@ -82,17 +80,38 @@ ARCHITECTURE top_arch OF top IS
 
     SIGNAL S_out : STD_ULOGIC_VECTOR(7 DOWNTO 0);
 
+    COMPONENT memory IS
+        PORT (
+            entry : IN STD_ULOGIC_VECTOR(7 DOWNTO 0);
+            outp : OUT STD_ULOGIC_VECTOR(7 DOWNTO 0)
+        );
+    END COMPONENT;
+    SIGNAL MEM_CACHE1_travel1 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL MEM_CACHE1_travel2 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL MEM_CACHE2_travel1 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL MEM_CACHE2_travel2 : STD_ULOGIC_VECTOR(7 DOWNTO 0);
 BEGIN
+
+    MEM1 : memory PORT MAP(
+        entry => MEM_CACHE1_travel2,
+        outp => MEM_CACHE1_travel1
+    );
+
+    MEM2 : memory PORT MAP(
+        entry => MEM_CACHE2_travel2,
+        outp => MEM_CACHE2_travel1
+    );
+
     selroute1 : selroute PORT MAP(
         A => A_IN,
         B => B_IN,
         SEL_ROUTE => SEL_ROUTE,
         RES_IN => S_out,
-        MEM_CACHE1_IN => MEM_CACHE1,
-        MEM_CACHE2_IN => MEM_CACHE2,
+        MEM_CACHE1_IN => MEM_CACHE1_travel1,
+        MEM_CACHE2_IN => MEM_CACHE2_travel1,
 
-        MEM_CACHE1_OUT => MEM_CACHE1,
-        MEM_CACHE2_OUT => MEM_CACHE2,
+        MEM_CACHE1_OUT => MEM_CACHE1_travel2,
+        MEM_CACHE2_OUT => MEM_CACHE2_travel2,
         Buffer_A_IN => Buffer_A,
         Buffer_B_IN => Buffer_B
     );
@@ -129,8 +148,8 @@ BEGIN
     selout1 : selout PORT MAP(
         SEL_OUT => SEL_OUT,
         S => S_out,
-        MEM_CACHE1 => MEM_CACHE1,
-        MEM_CACHE2 => MEM_CACHE2,
+        MEM_CACHE1 => MEM_CACHE1_travel1,
+        MEM_CACHE2 => MEM_CACHE2_travel1,
         resOUT => RES_OUT
     );
 

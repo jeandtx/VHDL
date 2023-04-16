@@ -41,8 +41,6 @@ BEGIN
     BEGIN
         A_in_sim <= "0010";
         B_in_sim <= "1110";
-        SR_in_L_sim <= '1';
-        SR_in_R_sim <= '1';
         FOR i IN 0 TO 15 LOOP
             SEL_FCT_sim <= STD_ULOGIC_VECTOR(to_unsigned(i, 4));
             FOR j IN 0 TO 15 LOOP
